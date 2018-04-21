@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Psychic Game</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+  <div id="game">
+    <h1>The Psychic Game</h1>
+    <h3 id="userGuess">Guess what letter I'm thinking of</h3>
+    <h3 id="wins">Wins:</h3>
+    <h3 id="losses">Losses:</h3>
+    <h3 id="guessesLeft">Guesses Left: 9</h3>
+    <h3 id="lettersGuessed">Your Guesses So Far:</h3>
+  </div>
+
+
+  <script type="text/javascript">
+
+    var letterOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    
+    var winsCounter = 0;
+    var lossesCounter = 0;
+    var guessesLeftCounter = 9;
+    var totalGuesses = []; 
+    var lettersGuessed = "";
+
+    var userGuess = "";
+
+
+	 //userGuess = userGuess.toLowerCase();
+
+  function checkAnswer() {
+    if (guessesLeftCounter == 9) {
+		var computerAnswer = letterOptions[Math.floor(Math.random() * letterOptions.length)];
+      console.log(computerAnswer);
+  
+  
+    for (var i=0; i < letterOptions; i++){
+
+    document.getElementById(letterOptions).innerHTML = lettersGuessed;
+
+    lettersGuessed = ""; 
+    guessesLeft--;
+      
+  }  
+
+    if (userGuess == computerAnswer) {
+      wins++;
+      guessesLeft = 9; 
+      totalGuesses = [];
+    }else{
+      totalGuesses.push(userGuess);
+      guessesLeft--;
+    }
+
+    if (guessesLeft ==0) {
+      losses++;
+      guessesLeft = 9;
+      totalGuesses = [];
+    }
+
+  //   var html = 
+  //   "<p>Guess what letter I'm thinking of</p>" +
+	// 	"<p>Wins: " + 
+	// 	wins + 
+	// 	"</p>" +
+	// 	"<p>Losses: " + 
+	// 	losses + 
+	// 	"</p>" +
+	// 	"<p>Guesses Left: " + 
+	// 	guessesLeft + 
+	// 	"</p>" +
+	// 	"<p>Your Guesses so far: " + 
+	// 	totalGuesses + 
+	// 	"</p>";
+
+  // document.querySelector("#game").innerHTML = html; 
+}
+}
+
+document.onkeyup = function(event){
+     //console.log(event.key);
+     checkAnswer();
+    }
+  </script>
+
+</body>
+
+</html>
